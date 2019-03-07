@@ -82,17 +82,17 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    SENG 401
+                    SENG401
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="/lectures">Lectures</a>
+                    <a href="/labs">Labs</a>
+                    <a href="/student">Students</a>
+                    <a href="https://d2l.ucalgary.ca">d2l</a>
+                    <a href="https://my.ucalgary.ca">UofC</a>
+                    <!-- <a href="https://forge.laravel.com">Forge</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a> -->
                 </div>
             </div>
         </div>

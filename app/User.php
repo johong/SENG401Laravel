@@ -2,6 +2,8 @@
 // Model
 namespace App;
 
+use App\Course;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,8 +17,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+     //fillable = which fields user can fill in
+     //If missing from here, even if the field exists, the input will not be used
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -36,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function courses()
+    {
+      //"use App\Course" allows this to recognize "Course"
+      return $this->hasMany(Course::class);
+    }
 }

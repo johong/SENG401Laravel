@@ -13,6 +13,7 @@ return [
     |
     */
 
+//Change here if you want to use different SQL (like POSTgre)
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*

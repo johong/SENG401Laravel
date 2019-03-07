@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in!</br>
+                    <!-- Auth is a global static object used by Laravel -->
+                    Welcome {{Auth::user()->name}}</br>
+                    Your ID on this system is: {{Auth::user()->id}}</br>
+                    Your Role is: <span style="color:blue"> {{Auth::user()->role}}</br> </span>
                 </div>
             </div>
         </div>
