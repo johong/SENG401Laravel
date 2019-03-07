@@ -81,17 +81,24 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    SENG401
+                    LECTURES
                 </div>
 
                 <div class="links">
-                    <a href="/lectures">Lectures</a>
-                    <a href="/labs">Labs</a>
-                    <a href="/student">Students</a>
-                    <a href="https://d2l.ucalgary.ca">d2l</a>
-                    <a href="https://my.ucalgary.ca">UofC</a>
-                    <!-- <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a> -->
+                  @foreach ($titles as $title)
+                    <a href="/{{$title}}">{{$title}}</a>
+                  @endforeach
+
+                  <br/>
+
+                  @foreach ($cars as $car)
+                    <a href="/{{$car}}">{{$car}}</a>
+                  @endforeach
+                    <!-- <a href="/labs">Quality Attributes</a>
+                    <a href="/student">Architecture Patterns</a>
+                    <a href="https://d2l.ucalgary.ca">UML</a>
+                    <a href="https://my.ucalgary.ca">REST</a>
+                    <a href="https://my.ucalgary.ca">SOAP</a> -->
                 </div>
             </div>
         </div>
