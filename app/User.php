@@ -1,5 +1,5 @@
 <?php
-// Model
+
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -16,8 +16,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'birthday', 'educationfield',
     ];
+
+    protected $attributes =[
+        'role' => 'visitor',
+    ];    
 
     /**
      * The attributes that should be hidden for arrays.
