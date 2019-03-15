@@ -30,7 +30,8 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. This whole function is a fucking mess, 
+     * let me know if it stops working
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
