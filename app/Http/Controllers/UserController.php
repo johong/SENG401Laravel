@@ -37,7 +37,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $updates=$request->all();
+        $thekeys=array_keys($updates);
+        $idsinorder;
+        for($i = 1; $i<count($thekeys);$i++){
+            $idsinorder[$i-1]=substr($thekeys[$i],-1);
+        }
+        for($i = 0; $i<count($idsinorder);$i++){
+            User::where('id',$idsinorder[$i])->update(array('role' => $updates['roleselect_' . $idsinorder[$i]]));
+        }
+        return redirect()->back();
     }
 
     /**
