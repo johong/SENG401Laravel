@@ -1,0 +1,129 @@
+body{
+    font-family: 'Open Sans', 'Arial', 'Helvetica', 'sans-serif';
+    margin:0px;
+    background-color: #F2F7FA;
+}
+
+nav{
+    background-color: #F2F7FA;
+    padding: 10px 0px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0px 3px 18px 5px rgba(0, 0, 0, 0.15);
+}
+
+.nav-home{
+    cursor: pointer;
+}
+.nav-scroll{
+    cursor: pointer;
+}
+
+.main-nav{
+    display: flex;
+    list-style: none;
+    width: 80%;
+    margin: auto;
+    padding: 0;
+}
+
+.main-nav img{
+    margin-left: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 30px;
+}
+
+li{
+    padding: 10px 0px;
+    color: #404040;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+li a{
+    margin: 0px 30px;
+    color: #404040;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+li a:hover{
+   font-weight: bold;
+}
+
+#links{
+    display: flex;
+    margin-left: auto;
+}
+
+.book-container{
+    width:80%;
+    margin: auto;
+    padding-top: 20px;
+}
+
+#book-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.book{
+    text-align: center;
+    margin: 20px;
+    transition-duration: 0.4s;
+    
+}
+
+.book button{
+    margin-top: 10px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.book:hover{
+    transform: scale(1.1,1.1);
+}
+
+
+.book-title{
+    font-weight: bolder;
+    margin: 10px 0px 0px 0px;
+    font-size: 1.3em;
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+
+}
+
+.book-author{
+    margin: 0px;
+}
+
+.images{
+    /* background-image: url('https://www.l-nutra.com/wp-content/uploads/2018/07/placeholder.png'); */
+    background-image: url('https://cobblestone.me/wp-content/plugins/photonic/include/images/placeholder.png');
+    background-size: 100% 100%;
+    position: relative;
+    overflow: hidden;
+}
+#book-image{
+    display: block;
+    width: auto;
+    height: 30vh;
+    object-fit: cover;
+    margin: auto;
+}
+
