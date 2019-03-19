@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<Title></Title>
+<Title>Home</Title>
 <head>
    <title>Home</title>
    <link rel="stylesheet" type="text/css" href="{{asset('css/books.css')}}">
@@ -33,7 +33,20 @@
                             {{$author->name}} <br>
                         @endforeach
                     </p>
-                    <button>Subscribe</button>
+                    
+                    @if($book->subscription==false)
+                    <form action="">
+                        <button id = "sub" type="submit">Subscribe</button>
+                    </form>
+
+                    @else
+                    <form action="">
+                        <button id = "unsub" type="submit">Un-subscribe</button>
+                    </form>
+
+                    @endif
+
+
                 </div>
             @endforeach
         @endif
