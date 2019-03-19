@@ -1,15 +1,23 @@
 #!/bin/bash
 php artisan tinker
 
-//#function csvToArray($filename = '', $delimiter = ',')
-$filename = public_path('file/SENG401-Lab4-Books.csv');
+//#note: when in doubt/need help with an error, just write 'wtf -a'
 
-if (!file_exists($filename) || !is_readable($filename))
-    echo "error";
+//#function csvToArray($filename = '', $delimiter = ',')
+//#use your own path before
+$filename = '[your path to]/SENG401-Lab4-Books.csv';
+$delimiter = ',';
+
+if (!file_exists($filename) || !is_readable($filename))\
+  echo "error";
+
+//#run up till here to check you have the right file path
+//#if there is no "error" echo-ed, then you have the right path for the csv
+
 
 $header = null;
 $data = array();
-if (($handle = fopen($filename, 'r')) !== false)
+if (($handle = fopen($filename, 'r')) !== false)\
 {
     while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
     {
@@ -22,21 +30,23 @@ if (($handle = fopen($filename, 'r')) !== false)
 }
 
 $csvArr = $data;
-foreach($csvArr as $record){
-  $book = new App\Book;
+//#run up till here to check you have gotten the csv as an array
+//#you should see the csv records as an array
 
-  $authors = explode($record->authors,' , ');
-  foreach($authors as $author){
-    $newAuthor = new App\Author;
-    $newAuthor->name = $author;
-    $newAuthor->books()->associate($book);
-    $book->authors()->associate($newAuthor);
-    $newAuthor->save();
-  }
-  $book->name = $record->name;
-  $book->ISBN = $record->ISBN;
-  $book->publicationyear = $record->year;
-  $book->publisher = $record->publisher;
-  $book->image = $record->image;
+foreach($csvArr as $record){\
+  $book = new App\Book;
+  $book->name = $record['Name'];
+  $book->iSBN = $record['ISBN'];
+  $book->year = $record['Year'];
+  $book->publisher = $record['Publisher'];
+  $book->image = $record['Image'];
+  $book->subscription = false;
   $book->save();
+  $authors = explode(', ',$record['Authors']);
+  foreach($authors as $author){
+    $newAuthor = new App\Authors;
+    $newAuthor->name = $author;
+    $newAuthor->save();
+    $book->authors()->sync($newAuthor);
+  }
 }
