@@ -21,3 +21,5 @@ Route::group(['middleware'=> ['auth', 'admin']],function(){
     // Route::get('/users', 'UserController@index')->middleware('admin');
     Route::resource('/users','UserController');
 });
+
+Route::resource('comments', 'CommentController');
