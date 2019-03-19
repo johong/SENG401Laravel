@@ -13,13 +13,12 @@ class BooksController extends Controller
 
         $books = Book::all();
         foreach($books as $book){
-            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1);
+            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();;
             array_push($subs, $sub);
         }
         // $subs = Subscribe::all();
         
-        // return view ('books/booksHome',['books'=>$books]);
-        return view ('books/booksHome',['subs'=>$subs]);
+        return view ('books/booksHome',['subs'=>$subs, 'books'=>$books]);
 
     }
 

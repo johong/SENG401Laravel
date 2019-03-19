@@ -18,6 +18,11 @@
     </nav>
     <br><br><br>
 
+    @if(count($subs))
+        @foreach($subs as $sub)
+            <p>{{$sub}}</p>
+        @endforeach
+    @endif
 
     <div class = "book-container">
         <div id = "book-grid">
@@ -45,7 +50,7 @@
                     @else
                     <form action="">
                         {{ csrf_field() }}
-                        <button id = "unsub" type="submit">Un-subscribe</button>
+                        <button id = "unsub" type="submit">Unavailable</button>
                     </form>
 
                     @endif
