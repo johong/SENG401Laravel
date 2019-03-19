@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['ISBN', 'Name', 'Authors', 'Year','Publisher','Image',];
+    
+    public function authors(){
+        return $this->hasMany(Authors::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+
+    public function subscribe(){
+        return $this->hasMany(Subscribe::class);
+    }
 }

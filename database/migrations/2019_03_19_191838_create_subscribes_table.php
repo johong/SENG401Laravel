@@ -15,6 +15,10 @@ class CreateSubscribesTable extends Migration
     {
         Schema::create('subscribes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('book_id');
+            $table->foreign('book_id')->references('Id')->on('books')->onDelete('cascade');
+            $table->integer('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
