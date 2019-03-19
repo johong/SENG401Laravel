@@ -8,7 +8,7 @@ class Book extends Model
 {
     
     public function authors(){
-        return $this->hasMany(Authors::class);
+        return $this->belongsToMany(Authors::class);
     }
 
     public function comments(){
