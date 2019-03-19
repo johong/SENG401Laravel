@@ -18,11 +18,6 @@
     </nav>
     <br><br><br>
 
-    @if(count($subs))
-        @foreach($subs as $sub)
-            <p>{{$sub}}</p>
-        @endforeach
-    @endif
 
     <div class = "book-container">
         <div id = "book-grid">
@@ -33,7 +28,7 @@
 
                 <div style="cursor: pointer;" class = "book">
                     <div class = "images">
-                        <img onclick="window.open('comments/{{$book->id}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
+                        <img onclick="window.open('home/{{$book->ISBN}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
                     </div>
 
                     <p class="book-title">{{$book->name}}</p>
