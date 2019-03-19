@@ -13,12 +13,12 @@ class AuthorBook extends Migration
      */
     public function up()
     {
-        Schema::create('author_book', function (Blueprint $table) {
+        Schema::create('authors_book', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('author_id')->unsigned()->index();
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->integer('book_id')->unsigned()->index();
-            $table->foreign('book_id')->references('Id')->on('books')->onDelete('cascade');
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
     }
 
