@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', 'BooksController@showBooks');
+Route::get('/', 'BooksController@show');
 
 Auth::routes();
+
+Route::post('/{id}', 'BooksController@subscribe');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

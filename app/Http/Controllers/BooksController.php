@@ -8,8 +8,39 @@ use App\Book;
 use App\Subscribe;
 class BooksController extends Controller
 {
-    public function showBooks(){
+    public function show(){
+        $subs = array();
+
         $books = Book::all();
-        return view ('books/booksHome',['books'=>$books]);
+        foreach($books as $book){
+            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1);
+            array_push($subs, $sub);
+        }
+        // $subs = Subscribe::all();
+        
+        // return view ('books/booksHome',['books'=>$books]);
+        return view ('books/booksHome',['subs'=>$subs]);
+
+    }
+
+    public function subscribe($id){
+
+        // $user_id = Auth::user()->id;
+        $user_id = 1;
+        $newSub = new Subscribe();
+        $newSub->book_id = $id;
+        $newSub->user_id = $user_id;
+        $newSub->save();
+
+        $updatedBook = Book::find($id);
+        $updatedBook->subscription = true;
+        $updatedBook->update();
+
+        return redirect('/');
+    }
+
+    public function unsubscribe($id){
+        $user_id = 1;
+        
     }
 }

@@ -17,12 +17,15 @@
         </ul>
     </nav>
     <br><br><br>
+
+
     <div class = "book-container">
         <div id = "book-grid">
 
         <!-- For each here -->
         @if(count($books))
             @foreach($books as $book)
+
                 <div style="cursor: pointer;" class = "book">
                     <div class = "images">
                         <img onclick="window.open('home/{{$book->ISBN}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
@@ -33,14 +36,15 @@
                             {{$author->name}} <br>
                         @endforeach
                     </p>
-                    
                     @if($book->subscription==false)
-                    <form action="">
+                    <form action="/{{$book->id}}" method = "post">
+                        {{ csrf_field() }}
                         <button id = "sub" type="submit">Subscribe</button>
                     </form>
 
                     @else
                     <form action="">
+                        {{ csrf_field() }}
                         <button id = "unsub" type="submit">Un-subscribe</button>
                     </form>
 
