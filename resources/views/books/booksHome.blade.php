@@ -23,12 +23,16 @@
         <!-- For each here -->
         @if(count($books))
             @foreach($books as $book)
-                <div onclick="window.open('home/{{$book->ISBN}}','_self');" style="cursor: pointer;" class = "book">
+                <div style="cursor: pointer;" class = "book">
                     <div class = "images">
-                        <img id="book-image" src="{{$book->Image}}" alt="Book">
+                        <img onclick="window.open('home/{{$book->ISBN}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
                     </div>
-                    <p class="book-title">{{$book->Name}}</p>
-                    <p class='book-author'>{{$book->Authors}}</p>
+                    <p class="book-title">{{$book->name}}</p>
+                    <p class='book-author'>By:
+                        @foreach($book->authors as $author)
+                            {{$author->name}} <br>
+                        @endforeach
+                    </p>
                     <button>Subscribe</button>
                 </div>
             @endforeach
