@@ -21,11 +21,11 @@
                     </tbody>
                 </table>
             </div>
-
-
-
+            
+@if ($flag)
             <div class="content">
                 <form id="commentform" method="POST" action="{{ config('app.url')}}/comments">
+                @method('PUT')
                     <h1> Enter Comment</h1>
                     <div class="form-input">
                         <label>Book</label> <input type="text" name="BookName">
@@ -40,6 +40,6 @@
 
 
         </div>
-
+        @endif 
 
 @endsection

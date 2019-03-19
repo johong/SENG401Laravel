@@ -13,10 +13,17 @@ class CommentController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function index()
-    // {
-    //     //
-    // }
+    public function index()
+    {
+        //
+        $query = \App\Comment::
+        join('users', 'comments.user_id', '=', 'users.id')
+        ->select('comments.*','users.email')
+        ->get();
+        return view ('comments/commentshome',['comments'=>$query]);
+
+
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -48,12 +55,19 @@ class CommentController extends Controller
     public function show(Comment $comment)
     {
         
-        $query = \App\Comment::get();
-        // ->where('book_id', '=', $comment->book_id)
-        //         ->join('users', 'comments.user_id', '=', 'users.id')
-        //         ->select('comments.*','users.email')
-        //         ->get();
-        return view ('comments/commentshome',['comments'=>$query]);
+        $query = \App\Comment::where('book_id', '=', $comment->book_id)
+                ->join('users', 'comments.user_id', '=', 'users.id')
+                ->select('comments.*','users.email')
+                ->get();
+        $userdata = \App\Subscribe::where('book_id', '=', $comment->book_id)
+                                    ->where('user_id', '=', Auth::user()->id)
+                                    ->get();
+        $flag = 0;
+        // if($userdata != null){
+        //     $flag = 1;
+        // }
+        
+        return view ('comments/commentshome',['comments'=>$query, 'flag'=> $userdata]);
 
     }
 
