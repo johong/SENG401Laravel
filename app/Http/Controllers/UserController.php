@@ -42,10 +42,10 @@ class UserController extends Controller
         $thekeys=array_keys($updates);
         $idsinorder;
         for($i = 1; $i<count($thekeys);$i++){
-            $idsinorder[$i-1]=substr($thekeys[$i],-1);
+            $idsinorder[$i-1]=$thekeys[$i];
         }
         for($i = 0; $i<count($idsinorder);$i++){
-            User::where('id',$idsinorder[$i])->update(array('role' => $updates['roleselect_' . $idsinorder[$i]]));
+            User::where('id',$idsinorder[$i])->update(array('role' => $updates[$idsinorder[$i]]));
         }
         return redirect()->back();
     }
