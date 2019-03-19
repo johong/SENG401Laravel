@@ -30,33 +30,37 @@
                     <div class = "images">
                         <img onclick="window.open('home/{{$book->ISBN}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
                     </div>
+
                     <p class="book-title">{{$book->name}}</p>
                     <p class='book-author'>By:
                         @foreach($book->authors as $author)
                             {{$author->name}} <br>
                         @endforeach
                     </p>
-                    @if($book->subscription==false)
+
+                    @if(!$book->subscription)
                     <form action="/{{$book->id}}" method = "post">
                         {{ csrf_field() }}
                         <button id = "sub" type="submit">Subscribe</button>
                     </form>
 
                     @else
-                    <form action="">
-                        {{ csrf_field() }}
-                        <button id = "unsub" type="submit">Un-subscribe</button>
-                    </form>
-
+                        @if ($book->unsub)
+                            <form action="">
+                                {{ csrf_field() }}
+                                <button id = "unsub" type="submit">Un-subscribe</button>
+                            </form>
+                        @else
+                            <button id="unavailable">Unavailable</button>
+                        @endif
                     @endif
-
-
                 </div>
+
             @endforeach
         @endif
 
         <!-- end for each -->
-    
+
         </div>
     </div>
 

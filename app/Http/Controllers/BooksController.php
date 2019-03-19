@@ -8,18 +8,21 @@ use App\Book;
 use App\Subscribe;
 class BooksController extends Controller
 {
-    public function show(){
-        $subs = array();
-
+    public function show() {
         $books = Book::all();
-        foreach($books as $book){
-            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1);
-            array_push($subs, $sub);
+
+        foreach($books as $book) {
+            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
+
+            //if the book's subscriber = current user_id
+            if ($sub[0]->user_id == 2) {
+              $book->unsub = true;
+            } else {
+              $book->unsub = false;
+            }
         }
-        // $subs = Subscribe::all();
-        
-        // return view ('books/booksHome',['books'=>$books]);
-        return view ('books/booksHome',['subs'=>$subs]);
+
+        return view ('books/booksHome',['books'=>$books]);
 
     }
 
@@ -41,6 +44,6 @@ class BooksController extends Controller
 
     public function unsubscribe($id){
         $user_id = 1;
-        
+
     }
 }

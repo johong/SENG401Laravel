@@ -74,7 +74,7 @@ li a:hover{
     text-align: center;
     margin: 20px;
     transition-duration: 0.4s;
-    
+
 }
 
 .book button{
@@ -96,6 +96,10 @@ li a:hover{
     background-color: rgb(201, 39, 39); /* Red */
 }
 
+#unavailable{
+    background-color: grey;
+}
+
 .book:hover{
     transform: scale(1.1,1.1);
 }
@@ -111,7 +115,7 @@ li a:hover{
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
 
 }
 
@@ -133,4 +137,3 @@ li a:hover{
     object-fit: cover;
     margin: auto;
 }
-
