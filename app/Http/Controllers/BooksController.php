@@ -10,7 +10,6 @@ class BooksController extends Controller
 {
     public function show() {
         $books = Book::all();
-<<<<<<< HEAD
 
         foreach($books as $book) {
             $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
@@ -24,16 +23,6 @@ class BooksController extends Controller
         }
 
         return view ('books/booksHome',['books'=>$books]);
-=======
-        foreach($books as $book){
-            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();;
-            array_push($subs, $sub);
-        }
-        // $subs = Subscribe::all();
-        
-        return view ('books/booksHome',['subs'=>$subs, 'books'=>$books]);
->>>>>>> ff7532ae7c6cd61e775508ee8685702e83a39012
-
     }
 
     public function subscribe($id){

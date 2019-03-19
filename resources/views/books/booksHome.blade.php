@@ -50,7 +50,6 @@
                     </form>
 
                     @else
-<<<<<<< HEAD
                         @if ($book->unsub)
                             <form action="">
                                 {{ csrf_field() }}
@@ -59,13 +58,6 @@
                         @else
                             <button id="unavailable">Unavailable</button>
                         @endif
-=======
-                    <form action="">
-                        {{ csrf_field() }}
-                        <button id = "unsub" type="submit">Unavailable</button>
-                    </form>
-
->>>>>>> ff7532ae7c6cd61e775508ee8685702e83a39012
                     @endif
                 </div>
 
