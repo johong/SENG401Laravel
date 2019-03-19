@@ -15,8 +15,8 @@ class AuthorBook extends Migration
     {
         Schema::create('authors_book', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('author_id')->unsigned()->index();
-            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->integer('authors_id')->unsigned()->index();
+            $table->foreign('authors_id')->references('id')->on('authors')->onDelete('cascade');
             $table->integer('book_id')->unsigned()->index();
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
         });
