@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 <Title>Home</Title>
 <head>
@@ -6,9 +6,12 @@
    <link rel="stylesheet" type="text/css" href="{{asset('css/books.css')}}">
    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
-<body>
+<body> --}}
+@extends('layouts.app')
 
-    <nav>
+@section('content')
+
+    {{-- <nav>
         <ul class = "main-nav">
             <li class = "nav-scroll" id = "personal-portfolio">Some Books</li>
             <div id = "links">
@@ -16,7 +19,7 @@
             </div>
         </ul>
     </nav>
-    <br><br><br>
+    <br><br><br> --}}
 
 
     <div class = "book-container">
@@ -48,7 +51,7 @@
                         @if ($book->unsub)
                             <form action="">
                                 {{ csrf_field() }}
-                                <button id = "unsub" type="submit">Un-subscribe</button>
+                                <button id = "unsub" type="submit">Unsubscribe</button>
                             </form>
                         @else
                             <button id="unavailable">Unavailable</button>
@@ -64,5 +67,4 @@
         </div>
     </div>
 
-</body>
-</html>
+@stop

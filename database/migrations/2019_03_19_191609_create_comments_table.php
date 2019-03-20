@@ -17,9 +17,9 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->text('text');
             $table->integer('book_id');
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            //$table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

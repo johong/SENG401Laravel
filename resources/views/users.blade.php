@@ -6,18 +6,17 @@
 @if(count($users))
 <form action={{url('users')}} method="POST">
     {{ csrf_field() }}
-<div id="" style="overflow:scroll; height:200px;">
+<div id="userslist" style="overflow:scroll; height:200px;">
     <span>
         @foreach($users as $user)
             <article style='margin-top:2%; margin-bottom:2%;'>
-            {{-- <input type="hidden" name="id_{{$user->id}}" value={{$user->id}}> --}}
             <p class="lead">
                 {{$user->name}}, {{$user->email}}, {{$user->birthday}},  {{$user->educationfield}}:
-            <select name="{{$user->id}}" the_id={{$user->id}}>
+            <select name="{{$user->id}}">
                     <option @if($user->role=='visitor') selected @endif value="visitor">visitor</option>
                     <option @if($user->role=='subscriber') selected @endif value="subscriber">subscriber</option>
                     <option @if($user->role=='admin') selected @endif value="admin">admin</option>
-                </select>
+            </select>
             </p>
             </article>
         @endforeach
@@ -25,28 +24,38 @@
 </div>
     <input type=submit value="Confirm" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
 </form>
+@endif
 
-<div id="" style="overflow:scroll; height:200px;">
+@if(count($books))
+<form action={{url('subscribe')}} method="POST">
+    {{ csrf_field() }}
+    <div id="bookslist" style="overflow:scroll; height:200px;">
         <span>
-            @foreach($users as $user)
+            @foreach($books as $book)
                 <article style='margin-top:2%; margin-bottom:2%;'>
-                {{-- <input type="hidden" name="id_{{$user->id}}" value={{$user->id}}> --}}
                 <p class="lead">
-                    {{$user->name}}, {{$user->email}}, {{$user->birthday}},  {{$user->educationfield}}:
-                <select name="{{$user->id}}" the_id={{$user->id}}>
-                        <option @if($user->role=='visitor') selected @endif value="visitor">visitor</option>
-                        <option @if($user->role=='subscriber') selected @endif value="subscriber">subscriber</option>
-                        <option @if($user->role=='admin') selected @endif value="admin">admin</option>
+                    {{$book->iSBN}}: {{$book->name}}, {{$book->year}}, {{$book->publisher}}
+                    <select name="{{$book->id}}">
+                        <option value = "none">-No One-</option>
+                        <?php
+                            $users=$users->sortBy('name');
+                        ?>
+                        @foreach($users as $user)
+                            <option @if($book->subscribe->last()['user_id']==$user->id&&$book->subscription==true) selected @endif value={{$user->id}}>{{$user->name}}</option>
+                        @endforeach 
                     </select>
                 </p>
                 </article>
             @endforeach
         </span>
     </div>
-        <input type=submit value="Confirm" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
-    </form>
-
+        <input type=submit value="Confirm Subscriptions" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
+</form>
 @endif
+<form action={{url('/books/create/')}}>
+    <input type=submit value="Add Book" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
+</form>
+
 
 @stop
 

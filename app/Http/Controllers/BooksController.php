@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Book;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Book;
 use App\Subscribe;
 class BooksController extends Controller
 {
@@ -15,16 +15,28 @@ class BooksController extends Controller
             $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
 
             //if the book's subscriber = current user_id
-            if ($sub[0]->user_id == 2) {
-              $book->unsub = true;
-            } else {
-              $book->unsub = false;
+            if (count($sub) > 0) {
+                if ($sub[0]->user_id == 1) {
+                    $book->unsub = true;
+                    continue;
+                }
             }
+
+            $book->unsub = false;
         }
 
         return view ('books/booksHome',['books'=>$books]);
     }
 
+    public function create(){
+        return view('createBook');
+    }
+    public function store(Request $request){
+        if($request['subscription']==null)
+            $request['subscription']='false';
+        $book = Book::create($request->all());
+        return redirect('users');
+    }
     public function subscribe($id){
 
         // $user_id = Auth::user()->id;
