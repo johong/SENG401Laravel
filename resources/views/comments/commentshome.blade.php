@@ -40,7 +40,7 @@
                 </table>
             </div>
             
-@if ($flag)
+@if($flag == true)
             <div class="comment-form">
                 <form id="commentform" action="{{ route('comments.store') }}" method="POST">
                 @csrf

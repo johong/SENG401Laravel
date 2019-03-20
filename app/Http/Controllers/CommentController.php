@@ -82,14 +82,14 @@ class CommentController extends Controller
                 // ->get();
 
         $check = Auth::User();
-        $flag = 0;
+        $flag = false;
         if(isset($check)){        
         $userdata = \App\Subscribe::where('book_id', '=', $book_id)
                                     ->where('user_id', '=', Auth::User()->id)
                                     ->get();
 
-            if(isset($userdata)){
-                $flag = 1;
+            if(count($userdata) > 0){
+                $flag = true;
             }
         }
         return view ('comments/commentshome',['comments'=>$query, 'flag' => $flag, 'book'=>$book]);
