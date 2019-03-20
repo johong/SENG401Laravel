@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \Auth;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,23 +17,27 @@ class CommentController extends Controller
     public function index()
     {
         //
-        $query = \App\Comment::
-        join('users', 'comments.user_id', '=', 'users.id')
-        ->select('comments.*','users.email')
+        $query = \App\Comment::join('users', 'comments.user_id', '=', 'users.id')
+        ->select('comments.*','users.*')
         ->get();
-        return view ('comments/commentshome',['comments'=>$query]);
 
 
-    }
+        $flag = 1;
+        $check = Auth::User();
+        if(isset($check)){        
+        $userdata = \App\Subscribe::where('book_id', '=', $comment->book_id)
+                                    ->where('user_id', '=', Auth::User()->id)
+                                    ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            if($userdata != null){
+                $flag = 1;
+            }
+        }
+
+
+        return view ('comments/commentshome',['comments'=>$query, 'flag'=>$flag]);
+
+
     }
 
     /**
@@ -44,6 +49,17 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'Comment'=>'required'
+          ]);
+          $comment = new comment([
+            'text' => $request->get('Comment'),
+            'book_id' => $request->get('book_id'),
+            'user_id'=> 1//\Auth::User()->id
+          ]);
+          $comment->save();
+          $param = $request->get('book_id');
+          return redirect()->route('comments.show', [$param]);
     }
 
     /**
@@ -52,56 +68,30 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show($book_id)
     {
         
-        $query = \App\Comment::where('book_id', '=', $comment->book_id)
+        $query = \App\Comment::where('book_id', '=', $book_id)
                 ->join('users', 'comments.user_id', '=', 'users.id')
-                ->select('comments.*','users.email')
+                ->select('users.email', 'comments.*')
                 ->get();
-        $userdata = \App\Subscribe::where('book_id', '=', $comment->book_id)
-                                    ->where('user_id', '=', Auth::user()->id)
+        $book = \App\Book::where('id', '=', $book_id)->select('books.*')->get();
+                // ->join('authors_book','books.id', '=', 'book_id')
+                // ->join('authors', 'authors.id', '=', 'authors_id')
+                // ->get();
+
+        $check = Auth::User();
+        $flag = 1;
+        if(isset($check)){        
+        $userdata = \App\Subscribe::where('book_id', '=', $book_id)
+                                    ->where('user_id', '=', Auth::User()->id)
                                     ->get();
-        $flag = 0;
-        // if($userdata != null){
-        //     $flag = 1;
-        // }
-        
-        return view ('comments/commentshome',['comments'=>$query, 'flag'=> $userdata]);
 
-    }
+            if(isset($userdata)){
+                $flag = 1;
+            }
+        }
+        return view ('comments/commentshome',['comments'=>$query, 'flag' => $flag, 'book'=>$book]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
     }
 }
