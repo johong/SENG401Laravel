@@ -10,7 +10,7 @@ use App\Subscribe;
 class BooksController extends Controller
 {
     public function show() {
-        $books = Book::all();
+        $books = Book::all()->sortBy('id');
 
         $loggedIn = false;
         $check = \Auth::user();
