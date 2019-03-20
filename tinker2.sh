@@ -5,7 +5,7 @@ php artisan tinker
 
 //#function csvToArray($filename = '', $delimiter = ',')
 //#use your own path before
-$filename = './SENG401-Lab4-Books.csv';
+$filename = './SENG401-Lab4-Books-cleaned.csv';
 $delimiter = ',';
 
 if (!file_exists($filename) || !is_readable($filename))\
@@ -44,9 +44,14 @@ foreach($csvArr as $record){\
   $book->save();
   $authors = explode(', ',$record['Authors']);
   foreach($authors as $author){
-    $newAuthor = new App\Authors;
-    $newAuthor->name = $author;
-    $newAuthor->save();
-    $book->authors()->sync($newAuthor);
+    $testAuthor = App\Authors::all()->where('name',$author);
+    if(!$testAuthor->isEmpty()){
+      $book->authors()->sync($testAuthor);
+    }else{
+      $newAuthor = new App\Authors;
+      $newAuthor->name = $author;
+      $newAuthor->save();
+      $book->authors()->sync($newAuthor);
+    }
   }
 }
