@@ -34,21 +34,21 @@ class BooksController extends Controller
         $book = Book::create($request->all());
         return redirect('users');
     }
-    // public function subscribe($id){
+    public function subscribe($id){
 
-    //     // $user_id = Auth::user()->id;
-    //     $user_id = 1;
-    //     $newSub = new Subscribe();
-    //     $newSub->book_id = $id;
-    //     $newSub->user_id = $user_id;
-    //     $newSub->save();
+        // $user_id = Auth::user()->id;
+        $user_id = 1;
+        $newSub = new Subscribe();
+        $newSub->book_id = $id;
+        $newSub->user_id = $user_id;
+        $newSub->save();
 
-    //     $updatedBook = Book::find($id);
-    //     $updatedBook->subscription = true;
-    //     $updatedBook->update();
+        $updatedBook = Book::find($id);
+        $updatedBook->subscription = true;
+        $updatedBook->update();
 
-    //     return redirect('/');
-    // }
+        return redirect('/');
+    }
 
     public function unsubscribe($id){
         $user_id = 1;
