@@ -51,7 +51,7 @@
                         @if ($book->unsub)
                             <form action="">
                                 {{ csrf_field() }}
-                                <button id = "unsub" type="submit">Un-subscribe</button>
+                                <button id = "unsub" type="submit">Unsubscribe</button>
                             </form>
                         @else
                             <button id="unavailable">Unavailable</button>

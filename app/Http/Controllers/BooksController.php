@@ -15,11 +15,14 @@ class BooksController extends Controller
             $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
 
             //if the book's subscriber = current user_id
-            if ($sub[0]->user_id == 2) {
-              $book->unsub = true;
-            } else {
-              $book->unsub = false;
+            if (count($sub) > 0) {
+                if ($sub[0]->user_id == 1) {
+                    $book->unsub = true;
+                    continue;
+                }
             }
+
+            $book->unsub = false;
         }
 
         return view ('books/booksHome',['books'=>$books]);
