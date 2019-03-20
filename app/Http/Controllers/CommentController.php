@@ -55,7 +55,7 @@ class CommentController extends Controller
           $comment = new comment([
             'text' => $request->get('Comment'),
             'book_id' => $request->get('book_id'),
-            'user_id'=> 1//\Auth::User()->id
+            'user_id'=> Auth::User()->id
           ]);
           $comment->save();
           $param = $request->get('book_id');
@@ -75,14 +75,14 @@ class CommentController extends Controller
                 ->join('users', 'comments.user_id', '=', 'users.id')
                 ->select('users.email', 'comments.*')
                 ->get();
-        $book = \App\Book::where('id', '=', $book_id)->select('books.*')->get();
+        $book = \App\Book::where('id', '=', $book_id)->get();
                 // ->join('authors_book','books.id', '=', 'book_id')
                 // ->join('authors', 'authors.id', '=', 'authors_id')
                 // ->select('authors.name','books.*')
                 // ->get();
 
         $check = Auth::User();
-        $flag = 1;
+        $flag = 0;
         if(isset($check)){        
         $userdata = \App\Subscribe::where('book_id', '=', $book_id)
                                     ->where('user_id', '=', Auth::User()->id)
