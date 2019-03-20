@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', 'BooksController@showBooks');
+Route::get('/', 'BooksController@show');
 
 Auth::routes();
+
+Route::post('/{id}', 'BooksController@subscribe');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -23,3 +25,5 @@ Route::group(['middleware'=> ['auth', 'admin']],function(){
     Route::get('/books/create','BooksController@create');
     Route::post('/books','BooksController@store');
 });
+
+Route::resource('comments', 'CommentController');
