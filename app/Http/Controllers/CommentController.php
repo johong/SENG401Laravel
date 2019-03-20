@@ -88,7 +88,7 @@ class CommentController extends Controller
                                     ->where('user_id', '=', Auth::User()->id)
                                     ->get();
 
-            if(isset($userdata)){
+            if(count($userdata)> 0){
                 $flag = 1;
             }
         }
