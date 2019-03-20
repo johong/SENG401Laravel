@@ -11,7 +11,7 @@
 
 @section('content')
 
-    {{-- <nav>
+    <!-- {{-- <nav>
         <ul class = "main-nav">
             <li class = "nav-scroll" id = "personal-portfolio">Some Books</li>
             <div id = "links">
@@ -19,7 +19,7 @@
             </div>
         </ul>
     </nav>
-    <br><br><br> --}}
+    <br><br><br> --}} -->
 
 
     <div class = "book-container">
@@ -31,7 +31,7 @@
 
                 <div style="cursor: pointer;" class = "book">
                     <div class = "images">
-                        <img onclick="window.open('home/{{$book->ISBN}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
+                        <img onclick="window.open('comments/{{$book->id}}','_self');" id="book-image" src="{{$book->image}}" alt="Book">
                     </div>
 
                     <p class="book-title">{{$book->name}}</p>
@@ -51,7 +51,7 @@
                         @if ($book->unsub)
                             <form action="">
                                 {{ csrf_field() }}
-                                <button id = "unsub" type="submit">Un-subscribe</button>
+                                <button id = "unsub" type="submit">Unsubscribe</button>
                             </form>
                         @else
                             <button id="unavailable">Unavailable</button>

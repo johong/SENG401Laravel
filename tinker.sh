@@ -5,7 +5,7 @@ php artisan tinker
 
 //#function csvToArray($filename = '', $delimiter = ',')
 //#use your own path before
-$filename = '[your path to]/SENG401-Lab4-Books.csv';
+$filename = 'SENG401-Lab4-Books.csv';
 $delimiter = ',';
 
 if (!file_exists($filename) || !is_readable($filename))\
