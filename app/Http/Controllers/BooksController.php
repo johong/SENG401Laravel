@@ -5,7 +5,6 @@ use App\Book;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Book;
 use App\Subscribe;
 class BooksController extends Controller
 {
@@ -26,7 +25,6 @@ class BooksController extends Controller
         return view ('books/booksHome',['books'=>$books]);
     }
 
-<<<<<<< HEAD
     public function create(){
         return view('createBook');
     }
@@ -35,26 +33,25 @@ class BooksController extends Controller
             $request['subscription']='false';
         $book = Book::create($request->all());
         return redirect('users');
-=======
-    public function subscribe($id){
-
-        // $user_id = Auth::user()->id;
-        $user_id = 1;
-        $newSub = new Subscribe();
-        $newSub->book_id = $id;
-        $newSub->user_id = $user_id;
-        $newSub->save();
-
-        $updatedBook = Book::find($id);
-        $updatedBook->subscription = true;
-        $updatedBook->update();
-
-        return redirect('/');
     }
+    // public function subscribe($id){
+
+    //     // $user_id = Auth::user()->id;
+    //     $user_id = 1;
+    //     $newSub = new Subscribe();
+    //     $newSub->book_id = $id;
+    //     $newSub->user_id = $user_id;
+    //     $newSub->save();
+
+    //     $updatedBook = Book::find($id);
+    //     $updatedBook->subscription = true;
+    //     $updatedBook->update();
+
+    //     return redirect('/');
+    // }
 
     public function unsubscribe($id){
         $user_id = 1;
 
->>>>>>> 48d15ba78920f854034ed2a5a43e2e48e42462e8
     }
 }

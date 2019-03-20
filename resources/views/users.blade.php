@@ -27,7 +27,7 @@
 @endif
 
 @if(count($books))
-<form action={{url('subscriber')}} method="POST">
+<form action={{url('subscribe')}} method="POST">
     {{ csrf_field() }}
     <div id="bookslist" style="overflow:scroll; height:200px;">
         <span>
@@ -44,7 +44,7 @@
                     <select name="{{$book->id}}">
                         <option value = "none">-No One-</option>
                         @foreach($users as $user)
-                            <option @if($book->subscribe->first()['user_id']==$user->id&&$book->subscription==true) selected @endif value={{$user->id}}>{{$user->name}}</option>
+                            <option @if($book->subscribe->last()['user_id']==$user->id&&$book->subscription==true) selected @endif value={{$user->id}}>{{$user->name}}</option>
                         @endforeach 
                     </select>
                 </p>
