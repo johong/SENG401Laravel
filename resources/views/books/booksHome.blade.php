@@ -49,7 +49,8 @@
 
                     @else
                         @if ($book->unsub)
-                            <form action="">
+                            <form action="/{{$book->id}}" method="post">
+                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
                                 <button id = "unsub" type="submit">Unsubscribe</button>
                             </form>

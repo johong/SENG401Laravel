@@ -39,8 +39,11 @@ class BooksController extends Controller
     }
     public function subscribe($id){
 
-        // $user_id = Auth::user()->id;
-        $user_id = 1;
+        $check = \Auth::user()->id;
+        if(!isset($check))
+            return redirect('/');
+
+        $user_id = $check;
         $newSub = new Subscribe();
         $newSub->book_id = $id;
         $newSub->user_id = $user_id;
@@ -54,7 +57,11 @@ class BooksController extends Controller
     }
 
     public function unsubscribe($id){
-        $user_id = 1;
+        $check = \Auth::user()->id;
+        if(!isset($check))
+            return redirect('/');
+
+        $user_id = $check;
 
         $updatedBook = Book::find($id);
         $updatedBook->subscription = false;
