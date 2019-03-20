@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('css/books.css')}}">
+    <link rel="stylesheet" type="text/css" href="commentsPageStyle.css">
 </head>
 <body>
     <div id="app">

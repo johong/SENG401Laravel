@@ -78,6 +78,7 @@ class CommentController extends Controller
         $book = \App\Book::where('id', '=', $book_id)->select('books.*')->get();
                 // ->join('authors_book','books.id', '=', 'book_id')
                 // ->join('authors', 'authors.id', '=', 'authors_id')
+                // ->select('authors.name','books.*')
                 // ->get();
 
         $check = Auth::User();
