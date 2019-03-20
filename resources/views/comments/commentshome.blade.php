@@ -9,6 +9,9 @@
 
     <p class="book-title">{{$book[0]->name}}</p>
     <p class='book-author'>By:
+    @foreach ($book[0]->authors as $author) 
+    {{$author->name}}
+    @endforeach
 
     </p>
 
