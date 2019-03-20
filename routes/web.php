@@ -28,3 +28,4 @@ Route::group(['middleware'=> ['auth', 'admin']],function(){
 
 Route::resource('comments', 'CommentController');
 Route::post('/{id}', 'BooksController@subscribe');
+Route::delete('/{id}', 'BooksController@unsubscribe');
