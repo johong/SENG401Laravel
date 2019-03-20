@@ -11,7 +11,7 @@
 
 @section('content')
 
-    {{-- <nav>
+    <!-- {{-- <nav>
         <ul class = "main-nav">
             <li class = "nav-scroll" id = "personal-portfolio">Some Books</li>
             <div id = "links">
@@ -19,7 +19,7 @@
             </div>
         </ul>
     </nav>
-    <br><br><br> --}}
+    <br><br><br> --}} -->
 
 
     <div class = "book-container">
