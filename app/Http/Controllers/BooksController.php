@@ -56,5 +56,10 @@ class BooksController extends Controller
     public function unsubscribe($id){
         $user_id = 1;
 
+        $updatedBook = Book::find($id);
+        $updatedBook->subscription = false;
+        $updatedBook->update();
+
+        return redirect('/');
     }
 }
