@@ -50,7 +50,7 @@ class SubscribeController extends Controller
                 $changethis['subscription']=false;
                 $changethis->save();
             }
-            elseif(Book::find($bookids[$i])->subscribe->last()['user_id']==$userids[$i]){
+            elseif(Book::find($bookids[$i])->subscribe->last()['user_id']==$userids[$i]&&Book::find($bookids[$i])['subscription']==true){
                 //nothing
             }
             else{

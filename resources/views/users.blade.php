@@ -34,15 +34,12 @@
             @foreach($books as $book)
                 <article style='margin-top:2%; margin-bottom:2%;'>
                 <p class="lead">
-                    {{$book->iSBN}}, {{$book->name}} , 
-                    @if($book->subscription) 
-                        true 
-                    @else 
-                        false 
-                    @endif 
-                    , {{$book->year}}, {{$book->publisher}}
+                    {{$book->iSBN}}: {{$book->name}}, {{$book->year}}, {{$book->publisher}}
                     <select name="{{$book->id}}">
                         <option value = "none">-No One-</option>
+                        <?php
+                            $users=$users->sortBy('name');
+                        ?>
                         @foreach($users as $user)
                             <option @if($book->subscribe->last()['user_id']==$user->id&&$book->subscription==true) selected @endif value={{$user->id}}>{{$user->name}}</option>
                         @endforeach 
