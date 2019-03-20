@@ -18,6 +18,8 @@ class CreateSubscribesTable extends Migration
             $table->integer('book_id');
             //$table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->integer('user_id');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+            $table->unique(['user_id', 'book_id']);
             //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

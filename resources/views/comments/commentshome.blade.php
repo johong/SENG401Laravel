@@ -3,12 +3,12 @@
 @section('content')
 <div class="book-comments">
 <h1>Book Stuff</h1>
-    <div class = "images">
-        <img id="book-image" src="{{$book[0]->image}}" alt="Book">
+    <div class = "comment-images">
+        <img id="comment-book-image" src="{{$book[0]->image}}" alt="Book">
     </div>
 
-    <p class="book-title">{{$book[0]->name}}</p>
-    <p class='book-author'>By:
+    <p class="comment-book-title">{{$book[0]->name}}</p>
+    <p class='comment-book-author'>By:
     @foreach ($book[0]->authors as $author) 
     {{$author->name}}
     @endforeach
@@ -19,7 +19,7 @@
 </div>
 
 
-<div class="comments">
+
             <div class="Comment-content">
                 <h1>Here's a list of all the comments for this book</h1>
                 <table>
