@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Book;
 use DB;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Subscribe;
@@ -11,21 +12,28 @@ class BooksController extends Controller
     public function show() {
         $books = Book::all();
 
-        foreach($books as $book) {
-            $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
-
-            //if the book's subscriber = current user_id
-            if (count($sub) > 0) {
-                if ($sub[0]->user_id == 1) {
-                    $book->unsub = true;
-                    continue;
+        $loggedIn = false;
+        $check = \Auth::user();
+        if(isset($check)){
+            $user_id = $check->id;
+            $loggedIn = true;
+            foreach($books as $book) {
+                $sub = Subscribe::where('book_id','=',$book->id)->latest('created_at')->take(1)->get();
+    
+                //if the book's subscriber = current user_id
+                if (count($sub) > 0) {
+                    if ($sub[0]->user_id == $user_id) {
+                        $book->unsub = true;
+                        continue;
+                    }
                 }
-            }
 
-            $book->unsub = false;
+                $book->unsub = false;
+                
+            }
         }
 
-        return view ('books/booksHome',['books'=>$books]);
+        return view ('books/booksHome',['books'=>$books, 'loggedIn'=>$loggedIn]);
     }
 
     public function create(){
@@ -39,11 +47,12 @@ class BooksController extends Controller
     }
     public function subscribe($id){
 
-        $check = \Auth::user()->id;
+        $check = \Auth::user();
         if(!isset($check))
             return redirect('/');
 
-        $user_id = $check;
+        
+        $user_id = $check->id;
         $newSub = new Subscribe();
         $newSub->book_id = $id;
         $newSub->user_id = $user_id;
@@ -57,11 +66,11 @@ class BooksController extends Controller
     }
 
     public function unsubscribe($id){
-        $check = \Auth::user()->id;
+        $check = \Auth::user();
         if(!isset($check))
             return redirect('/');
 
-        $user_id = $check;
+        $user_id = $check->id;
 
         $updatedBook = Book::find($id);
         $updatedBook->subscription = false;
