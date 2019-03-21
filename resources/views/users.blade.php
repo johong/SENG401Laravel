@@ -4,6 +4,9 @@
 
 
 @if(count($users))
+<?php
+    $users=$users->sortBy('name');
+?>
 <form action={{url('users')}} method="POST">
     {{ csrf_field() }}
 <div id="userslist" style="overflow:scroll; height:200px;">
@@ -27,6 +30,9 @@
 @endif
 
 @if(count($books))
+<?php
+    $books=$books->sortBy('name');
+?>
 <form action={{url('subscribe')}} method="POST">
     {{ csrf_field() }}
     <div id="bookslist" style="overflow:scroll; height:200px;">
@@ -34,12 +40,9 @@
             @foreach($books as $book)
                 <article style='margin-top:2%; margin-bottom:2%;'>
                 <p class="lead">
-                    {{$book->iSBN}}: {{$book->name}}, {{$book->year}}, {{$book->publisher}}
+                        <a href = {{"/books/{$book->id}/edit"}} style='text-decoration:none;color:black;'>{{$book->iSBN}}: {{$book->name}}, {{$book->year}}, {{$book->publisher}}</a>
                     <select name="{{$book->id}}">
                         <option value = "none">-No One-</option>
-                        <?php
-                            $users=$users->sortBy('name');
-                        ?>
                         @foreach($users as $user)
                             <option @if($book->subscribe->last()['user_id']==$user->id&&$book->subscription==true) selected @endif value={{$user->id}}>{{$user->name}}</option>
                         @endforeach 

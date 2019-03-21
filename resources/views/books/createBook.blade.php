@@ -81,19 +81,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                                <label for="subscription" class="col-md-4 col-form-label text-md-right">{{ __('Subscription') }}</label>
-    
-                                <div class="col-md-6">
-                                    <input id="subscription" type="checkbox" value= "true" class="form-control{{ $errors->has('subscription') ? ' is-invalid' : '' }}" name="subscription">
-    
-                                    @if ($errors->has('subscription'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('subscription') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

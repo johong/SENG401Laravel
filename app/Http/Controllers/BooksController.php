@@ -29,7 +29,7 @@ class BooksController extends Controller
     }
 
     public function create(){
-        return view('createBook');
+        return view('books.createBook');
     }
     public function store(Request $request){
         if($request['subscription']==null)
@@ -61,5 +61,20 @@ class BooksController extends Controller
         $updatedBook->update();
 
         return redirect('/');
+    }
+
+    public function edit($id){
+        $book = Book::findOrFail($id);
+        return view('books.editBook',compact('book'));
+    }
+
+    public function update($id, Request $request){
+        $book = Book::findOrFail($id);
+        $book->update($request->all());
+        return redirect ('users');
+    }
+    public function destroy($id){
+        Book::findOrFail($id)->delete();
+        return redirect('users');
     }
 }

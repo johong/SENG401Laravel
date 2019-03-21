@@ -23,6 +23,9 @@ Route::group(['middleware'=> ['auth', 'admin']],function(){
     Route::resource('/users','UserController');
     Route::get('/books/create','BooksController@create');
     Route::post('/books','BooksController@store');
+    Route::get('/books/{id}/edit', 'BooksController@edit');
+    Route::patch('/books/{id}','BooksController@update');
+    Route::delete('/books/{id}','BooksController@destroy');
     Route::post('/subscribe','SubscribeController@store');
 });
 
