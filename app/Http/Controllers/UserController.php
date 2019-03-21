@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Book;
+use App\Authors;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -18,7 +19,8 @@ class UserController extends Controller
         //$articles= Article::latest('published_at')->published()->get();
         $users = User::all();
         $books = Book::all();
-        return view('users', compact('users', 'books'));
+        $authors = Authors::all();
+        return view('users', compact('users', 'books','authors'));
     }
 
     /**

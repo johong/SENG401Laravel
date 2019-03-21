@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Book') }}</div>
+                <div class="card-header">{{ __('Edit Book') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/books/' . $book->id)}}">

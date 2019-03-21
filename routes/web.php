@@ -19,7 +19,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=> ['auth', 'admin']],function(){
-    // Route::get('/users', 'UserController@index')->middleware('admin');
     Route::resource('/users','UserController');
     Route::get('/books/create','BooksController@create');
     Route::post('/books','BooksController@store');
@@ -27,6 +26,11 @@ Route::group(['middleware'=> ['auth', 'admin']],function(){
     Route::patch('/books/{id}','BooksController@update');
     Route::delete('/books/{id}','BooksController@destroy');
     Route::post('/subscribe','SubscribeController@store');
+    Route::get('/authors/create','AuthorsController@create');
+    Route::post('/authors','AuthorsController@store');
+    Route::get('/authors/{id}/edit', 'AuthorsController@edit');
+    Route::patch('/authors/{id}','AuthorsController@update');
+    Route::delete('/authors/{id}','AuthorsController@destroy');
 });
 
 Route::resource('comments', 'CommentController');

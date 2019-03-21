@@ -7,6 +7,8 @@
 <?php
     $users=$users->sortBy('name');
 ?>
+<br>
+<h3>Users</h3>
 <form action={{url('users')}} method="POST">
     {{ csrf_field() }}
 <div id="userslist" style="overflow:scroll; height:200px;">
@@ -29,10 +31,14 @@
 </form>
 @endif
 
+<hr>
+
 @if(count($books))
 <?php
     $books=$books->sortBy('name');
 ?>
+<br>
+<h3>Books</h3>
 <form action={{url('subscribe')}} method="POST">
     {{ csrf_field() }}
     <div id="bookslist" style="overflow:scroll; height:200px;">
@@ -59,6 +65,28 @@
     <input type=submit value="Add Book" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
 </form>
 
+<hr>
+@if(count($authors))
+<?php
+    $authors=$authors->sortBy('name');
+?>
+<br>
+<h3>Authors</h3>
+<div id="authorlist" style="overflow:scroll; height:200px;">
+        <span>
+            @foreach($authors as $author)
+                <article style='margin-top:2%; margin-bottom:2%;'>
+                <p class="lead">
+                        <a href = {{"/authors/{$author->id}/edit"}} style='text-decoration:none;color:black;'>{{$author->name}}</a>
+                </p>
+                </article>
+            @endforeach
+        </span>
+    </div>
+@endif
+<form action={{url('/authors/create/')}}>
+    <input type=submit value="Add Author" class = 'btn btn-primary form-control' style='margin-top:1%; margin-bottom:1%'>
+</form>
 
 @stop
 
