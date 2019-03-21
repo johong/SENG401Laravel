@@ -1,29 +1,72 @@
 .comment-book-title{
-    font-weight: bolder;
-    margin: 10px 0px 0px 0px;
-    font-size: 1.3em;
+    margin: 0px 0px 0px 0px;
     /* text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; */
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    text-align: left;
+
 
 }
 #comment-book-image{
-    display: float-left;
     width: auto;
     height: auto;
     object-fit: cover;
-    margin: auto;
+    float:left;
+    clear:left;
 }
 .comment-book-author{
     margin: 0px;
     font-weight: bolder;
     font-size: 1em;
+    float:left;
+}
+.comment-book-year{
+    margin: 0px;
+    font-weight: bolder;
+    font-size: 1em;
+}
+.Comment-content{
+    float:right;
+    text-align: right;
 }
 
-.Comment-content{
-    display:inline;
+.comment-year-author{
+    float:left;
+    clear:left;
+}
+
+.inner-name{
+    font-weight: bolder;
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+
+.inner-comment{
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+
+.user-comment{
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+.inner-date{
+    font-size: 0.8em;
+    text-align:left;
+    padding-left: 20px;
+    padding-bottom: 0%;
+}
+
+.comment-form{
+    padding-left: 40px;
+    float:left;
+    text-align: left;
+}
+
+.form-header{
+    font-size: 2em;
 }

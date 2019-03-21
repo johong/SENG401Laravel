@@ -73,7 +73,7 @@ class CommentController extends Controller
         
         $query = \App\Comment::where('book_id', '=', $book_id)
                 ->join('users', 'comments.user_id', '=', 'users.id')
-                ->select('users.email', 'comments.*')
+                ->select('users.name', 'comments.*')
                 ->get();
         $book = \App\Book::where('id', '=', $book_id)->get();
                 // ->join('authors_book','books.id', '=', 'book_id')
