@@ -1,0 +1,72 @@
+.comment-book-title{
+    margin: 0px 0px 0px 0px;
+    /* text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; */
+    overflow: hidden;
+    text-align: left;
+
+
+}
+#comment-book-image{
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    float:left;
+    clear:left;
+}
+.comment-book-author{
+    margin: 0px;
+    font-weight: bolder;
+    font-size: 1em;
+    float:left;
+}
+.comment-book-year{
+    margin: 0px;
+    font-weight: bolder;
+    font-size: 1em;
+}
+.Comment-content{
+    float:right;
+    text-align: right;
+}
+
+.comment-year-author{
+    float:left;
+    clear:left;
+}
+
+.inner-name{
+    font-weight: bolder;
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+
+.inner-comment{
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+
+.user-comment{
+    font-size: 1em;
+    text-align:left;
+    padding-left: 20px;
+}
+.inner-date{
+    font-size: 0.8em;
+    text-align:left;
+    padding-left: 20px;
+    padding-bottom: 0%;
+}
+
+.comment-form{
+    padding-left: 40px;
+    float:left;
+    text-align: left;
+}
+
+.form-header{
+    font-size: 2em;
+}

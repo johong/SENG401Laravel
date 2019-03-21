@@ -41,20 +41,23 @@
                         @endforeach
                     </p>
 
-                    @if(!$book->subscription)
-                    <form action="/{{$book->id}}" method = "post">
-                        {{ csrf_field() }}
-                        <button id = "sub" type="submit">Subscribe</button>
-                    </form>
+                    @if($loggedIn==true)
+                        @if(!$book->subscription)
+                        <form action="/{{$book->id}}" method = "post">
+                            {{ csrf_field() }}
+                            <button id = "sub" type="submit">Subscribe</button>
+                        </form>
 
-                    @else
-                        @if ($book->unsub)
-                            <form action="">
-                                {{ csrf_field() }}
-                                <button id = "unsub" type="submit">Unsubscribe</button>
-                            </form>
                         @else
-                            <button id="unavailable">Unavailable</button>
+                            @if ($book->unsub)
+                                <form action="/{{$book->id}}" method="post">
+                                    {{method_field('DELETE')}}
+                                    {{ csrf_field() }}
+                                    <button id = "unsub" type="submit">Unsubscribe</button>
+                                </form>
+                            @else
+                                <button id="unavailable">Unavailable</button>
+                            @endif
                         @endif
                     @endif
                 </div>
