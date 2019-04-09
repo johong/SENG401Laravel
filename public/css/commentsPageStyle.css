@@ -13,7 +13,7 @@ body{
 
 }
 #comment-book-image{
-    width: auto;
+    width: 40vh;
     height: 60vh;
     object-fit: cover;
     float:left;
